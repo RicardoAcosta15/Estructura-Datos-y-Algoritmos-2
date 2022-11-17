@@ -4,28 +4,36 @@ using namespace std;
 
 string Convierte(int n, int i);
 void SeparaGruposDigitos(string d, int gd[]);
-string ValidaNumero();
+bool Validar(string c);
 
 // Programa que conviente un numero de n digitos a palabras
 int main(int argc, const char* argv[]) {
-	int i, j = 0, len = 0;
+	int i = 1, j = 0, len = 0, Cant = 0;
 	int dg[10] = { 0,-1,-1,-1,-1,-1,-1,-1,-1,-1 };
-	string dig = "";
+	bool validar = true;
+	string dig = "", c;
 	string num = "", k = "", copia;
-	string deno[9] = { "","mil","millones","millardos","billones","mil billones","trillones","mil trillones" };
-	cout << "Introduzca la cantidad a convertir a Palabra: ";
-	while (k == "") k = ValidaNumero();
-	j = 0;
-	len = 0;
-	while (k[len] != '\0') len++;
+	string deno[8] = { "","mil","millones","millardos","billones","mil billones","trillones","mil trillones" };
+
+	do
+	{
+		system("cls");
+		cout << "Introduzca la cantidad a convertir a Palabra: ";
+		cin >> k;
+		validar = Validar(c);  //Verifica si se ingresó un número
+
+	} while (validar == false);  //Repite mientras el valor no sea un número
+
 	SeparaGruposDigitos(k, dg);
-	i = 1;
+
 	while (dg[i] != -1) {
 		copia = Convierte(dg[i], i); // retorna un numero de 3 digitos en palabras
 		if (copia == "uno" && i > 1) copia = "un";
-		(copia == "") ? num = copia + " " + num : num = copia + " " + deno[i - 1] + " " + num;
+		if (copia == "un" && i == 2) copia = "";
+		(copia == "" && dg[3] == 1) ? num = copia + " " + num : num = copia + " " + deno[i - 1] + " " + num;
 		i++;
 	}
+
 	cout << num << "pesos con " << dg[0] << " centavos" << endl;
 	return 0;
 }
@@ -43,7 +51,7 @@ string Convierte(int n, int ciclo)
 	if (c == 1 && r > 0) cadena = cadena + "to"; // ciento en el caso de que sea > 100
 	d = d / 10; n = r; pos = 9; // posicion de las decenas
 	c = n / d; r = n % d; // digitos de las decenas y unidad
-	if (c == 1 && (r >= 1 && r <= 5)) { cadena = cadena + " " + palabra[pos * (c + 1) + r]; c = 0; r = 0; } // casi de losnumerales especiales once al quince
+	if (c == 1 && (r >= 1 && r <= 5)) { cadena = cadena + " " + palabra[pos * (c + 1) + r]; c = 0; r = 0; } // casi de los numerales especiales once al quince
 	if (c == 1 && r == 0) cadena = cadena + " " + palabra[pos + c]; // primera decena sin residuo (diez)
 	if (c == 1 && r > 5) cadena = cadena + " dieci"; // agregar palabra dieci a numerales
 	else if (c > 1) cadena = cadena + " " + palabra[pos + c]; // agregar palabra de la decena
@@ -58,8 +66,19 @@ void SeparaGruposDigitos(string d, int gd[])
 	int i, k = 0, j = 0, n = 1, s = 0;
 	bool t = false;
 	string dig = "", num = "";
-	while (d[k] != '\0') { k++; if (d[k] == '.') { t = true; s = k; } } // para determinar donde se encuentra el punto delos centavos
-		if (t) { for (i = s; i < k; i++) dig = dig + d[i]; } // toma los digitos de los centavos
+	while (d[k] != '\0') 
+	{	k++; 
+		if (d[k] == '.') 
+		{ t = true; 
+		s = k; } 
+	} // para determinar donde se encuentra el punto delos centavos
+	if (t) 
+	{
+		for (i = s; i < k; i++) {
+		dig = dig + d[i]; 
+		}
+
+	} // toma los digitos de los centavos
 	(k > s + 1 && t == true) ? gd[0] = stof(dig) * 100 : gd[0] = 0;
 	if (s == 0) s = k;
 	for (i = s - 1; i >= 0; i--) {
@@ -80,20 +99,17 @@ void SeparaGruposDigitos(string d, int gd[])
 }
 
 // Valida la entrada de un valor numerico
-string ValidaNumero() {
-	string c = "", k;
-	bool q = false;
-	int i = 0;
-	int p = 0;
-	cin >> c;
-	while ((c[i] != '\0') && (q != true)) {
-		if (c[i] == '.') p++;
-		else if ((p > 1) || (isdigit(c[i]) == false)) {
-			cout << string(50, '\n'); cout << "Entrada Invalida, intente nuevamente:";
-			c = "";
-			q = true;
+bool Validar(string c) // Devuelve true si se ingresa un dígito o false si se ingresa una letra
+{
+	bool q = true;
+
+	for (int i = 0; i < c.length(); i++)
+	{
+		if (isdigit(c[i]) == false)  // isdigit comprueba si el valor dentro de la cadena es un dígito
+		{
+			q = false;
 		}
-		i++;
 	}
-	return c;
+
+	return q;
 }
