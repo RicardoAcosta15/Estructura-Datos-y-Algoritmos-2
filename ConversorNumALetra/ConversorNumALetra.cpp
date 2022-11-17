@@ -34,7 +34,7 @@ int main(int argc, const char* argv[]) {
 	bool validar = true;
 	string dig = "";
 	string num = "", k = "", copia, centavos;
-	string deno[8] = { "","mil","millones","millardos","billones","mil billones","trillones","mil trillones" };
+	string deno[8] = { "","mil","millones","mil millones","billones","mil billones","trillones","mil trillones" };
 
 	do
 	{
@@ -74,7 +74,7 @@ string TransformarDigito(int n, int ciclo)
 	string palabra[34] = { "","cien","doscientos ","trescientos ","cuatrocientos ","quinientos ","seiscientos","setecientos ","ochocientos ","novecientos","diez","veinte","treinta","cuarenta","cincuenta","sesenta","setenta","ochenta","noventa","once","doce","trece","catorce","quince","","un","dos","tres","cuatro","cinco","seis","siete","ocho","nueve"};
 	string cadena = "";
 	int c, r, d = 100, pos = 0;
-	c = n / d; // cociente entero para tomar el primer digito (centena)
+	c = n / d; // Para tomar el digito de la centena
 	r = n % d; // residuo de la division para tomar los digitos que restan
 	cadena = cadena + palabra[pos + c]; //se toma la palabra correspondiente a las centenas
 	if (c == 1 && r > 0) cadena = cadena + "to"; // ciento en el caso de que sea > 100
@@ -93,8 +93,7 @@ string TransformarCent(int n)
 {
 	string palabra[34] = { "","cien","doscientos ","trescientos ","cuatrocientos ","quinientos ","seiscientos","setecientos ","ochocientos ","novecientos","diez","veinte","treinta","cuarenta","cincuenta","sesenta","setenta","ochenta","noventa","once","doce","trece","catorce","quince","","uno","dos","tres","cuatro","cinco","seis","siete","ocho","nueve" };
 	string cadena = "";
-	int c, r, d = 100, pos = 0;
-	d = d / 10; pos = 9; // posicion de las decenas
+	int c, r, d = 10, pos = 9;
 	c = n / d; r = n % d; // digitos de las decenas y unidad
 	if (c == 1 && (r >= 1 && r <= 5)) { cadena = cadena + " " + palabra[pos * (c + 1) + r]; c = 0; r = 0; } // casi de los numerales especiales once al quince
 	if (c == 1 && r == 0) cadena = cadena + " " + palabra[pos + c]; // primera decena sin residuo (diez)
@@ -117,14 +116,14 @@ void AgruparDigitos(string d, int gd[])
 		if (d[k] == '.') 
 		{ t = true; 
 		s = k; } 
-	} // para determinar donde se encuentra el punto delos centavos
+	} // para determinar la posicion de los centavos
 	if (t) 
 	{
 		for (i = s; i < k; i++) {
 		dig = dig + d[i]; 
 		}
 
-	} // toma los digitos de los centavos
+	} // para tomar los digitos de los centavos
 	(k > s + 1 && t == true) ? gd[0] = stof(dig) * 100 : gd[0] = 0;
 	if (s == 0) s = k;
 	for (i = s - 1; i >= 0; i--) {
@@ -144,8 +143,8 @@ void AgruparDigitos(string d, int gd[])
 	cout << "El numero introducido fue: " << num << endl;
 }
 
-// Valida la entrada de un valor numerico
-bool Validar(string c) // Devuelve true si se ingresa un dígito o false si se ingresa una letra
+// Validacion de la entrada
+bool Validar(string c) // Devuelve true si se ingresa un dígito y/o un punto o false si se ingresa una letra
 {
 	bool q = true;
 	int p = 0, i = 0;
@@ -157,14 +156,13 @@ bool Validar(string c) // Devuelve true si se ingresa un dígito o false si se in
 			q = false;
 		}
 		
-		if (c[i] == '.') {
+		if (c[i] == '.') { // En caso de que haya mas de un punto 
 			p++;
 			if (p > 1)
 			{
 				q = false;
 			}
 		}
-
 		i++;
 	}
 
