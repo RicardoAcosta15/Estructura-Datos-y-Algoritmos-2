@@ -22,9 +22,9 @@
 #include <string>
 using namespace std;
 
-string Convierte(int n, int i);
-string ConvierteCent(int n);
-void SeparaGruposDigitos(string d, int gd[]);
+string TransformarDigito(int n, int i);
+string TransformarCent(int n);
+void AgruparDigitos(string d, int gd[]);
 bool Validar(string c);
 
 // Programa que conviente un numero de n digitos a palabras
@@ -45,10 +45,10 @@ int main(int argc, const char* argv[]) {
 
 	} while (validar == false);  //Repite mientras el valor no sea un número
 
-	SeparaGruposDigitos(k, dg);
+	AgruparDigitos(k, dg);
 
 	while (dg[i] != -1) {
-		copia = Convierte(dg[i], i); // retorna un numero de 3 digitos en palabras
+		copia = TransformarDigito(dg[i], i); // retorna un numero de 3 digitos en palabras
 		if (copia == "uno" && i >= 1) copia = "un";  // en caso de que sea un millon, un billon,...
 		if (copia == "un" && i == 2) copia = ""; // para que sea mil y no un mil
 		if (copia == "" && dg[2] != 1) 
@@ -62,14 +62,14 @@ int main(int argc, const char* argv[]) {
 		i++;
 	}
 
-	centavos = ConvierteCent(dg[0]);
+	centavos = TransformarCent(dg[0]);
 
 	cout << num << "pesos con " << centavos << " centavos" << endl;
 	return 0;
 }
 
 // Convierte a palabra el caso base de un numero de 3 digitos
-string Convierte(int n, int ciclo)
+string TransformarDigito(int n, int ciclo)
 {
 	string palabra[34] = { "","cien","doscientos ","trescientos ","cuatrocientos ","quinientos ","seiscientos","setecientos ","ochocientos ","novecientos","diez","veinte","treinta","cuarenta","cincuenta","sesenta","setenta","ochenta","noventa","once","doce","trece","catorce","quince","","un","dos","tres","cuatro","cinco","seis","siete","ocho","nueve"};
 	string cadena = "";
@@ -89,7 +89,7 @@ string Convierte(int n, int ciclo)
 	return cadena;
 }
 
-string ConvierteCent(int n)
+string TransformarCent(int n)
 {
 	string palabra[34] = { "","cien","doscientos ","trescientos ","cuatrocientos ","quinientos ","seiscientos","setecientos ","ochocientos ","novecientos","diez","veinte","treinta","cuarenta","cincuenta","sesenta","setenta","ochenta","noventa","once","doce","trece","catorce","quince","","uno","dos","tres","cuatro","cinco","seis","siete","ocho","nueve" };
 	string cadena = "";
@@ -107,7 +107,7 @@ string ConvierteCent(int n)
 }
 
 	//Separa en grupo de 3 digitos el numero dado para realizar la conversion
-void SeparaGruposDigitos(string d, int gd[])
+void AgruparDigitos(string d, int gd[])
 {
 	int i, k = 0, j = 0, n = 1, s = 0;
 	bool t = false;
@@ -148,13 +148,24 @@ void SeparaGruposDigitos(string d, int gd[])
 bool Validar(string c) // Devuelve true si se ingresa un dígito o false si se ingresa una letra
 {
 	bool q = true;
+	int p = 0, i = 0;
 
-	for (int i = 0; i < c.length(); i++)
+	while(i < c.length())
 	{
 		if (isdigit(c[i]) == false && c[i] != '.')  // isdigit comprueba si el valor dentro de la cadena es un dígito
 		{
 			q = false;
 		}
+		
+		if (c[i] == '.') {
+			p++;
+			if (p > 1)
+			{
+				q = false;
+			}
+		}
+
+		i++;
 	}
 
 	return q;
