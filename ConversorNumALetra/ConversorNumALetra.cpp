@@ -30,7 +30,7 @@ bool Validar(string c);
 // Programa que conviente un numero de n digitos a palabras
 int main(int argc, const char* argv[]) {
 	int i = 1, j = 0, c;
-	int dg[10] = { 0,-1,-1,-1,-1,-1,-1,-1,-1,-1 };
+	int dg[8] = { 0,-1,-1,-1,-1,-1,-1,-1 };
 	bool validar = true;
 	string dig = "";
 	string num = "", k = "", copia, centavos;
@@ -49,8 +49,8 @@ int main(int argc, const char* argv[]) {
 
 	while (dg[i] != -1) {
 		copia = Convierte(dg[i], i); // retorna un numero de 3 digitos en palabras
-		if (copia == "uno" && i >= 1) copia = "un";  
-		if (copia == "un" && i == 2) copia = "";
+		if (copia == "uno" && i >= 1) copia = "un";  // en caso de que sea un millon, un billon,...
+		if (copia == "un" && i == 2) copia = ""; // para que sea mil y no un mil
 		if (copia == "" && dg[2] != 1) 
 		{ 
 			num = copia + " " + num;
