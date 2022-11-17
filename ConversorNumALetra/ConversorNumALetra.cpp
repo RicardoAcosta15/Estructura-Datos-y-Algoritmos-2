@@ -29,10 +29,10 @@ bool Validar(string c);
 
 // Programa que conviente un numero de n digitos a palabras
 int main(int argc, const char* argv[]) {
-	int i = 1, j = 0, len = 0, Cant = 0;
+	int i = 1, j = 0, c;
 	int dg[10] = { 0,-1,-1,-1,-1,-1,-1,-1,-1,-1 };
 	bool validar = true;
-	string dig = "", c;
+	string dig = "";
 	string num = "", k = "", copia, centavos;
 	string deno[8] = { "","mil","millones","millardos","billones","mil billones","trillones","mil trillones" };
 
@@ -53,7 +53,7 @@ int main(int argc, const char* argv[]) {
 		if (copia == "un" && i == 2) copia = "";
 		if (copia == "" && dg[2] != 1) 
 		{ 
-			num = "cero ";
+			num = copia + " " + num;
 		}
 		else
 		{ 
@@ -103,7 +103,7 @@ string ConvierteCent(int n)
 	else if (c > 1) cadena = cadena + " " + palabra[pos + c]; // agregar palabra de la decena
 	n = r; pos = 24; // agregan las unidades
 	(c > 1 && r > 0) ? cadena = cadena + " y " + palabra[pos + n] : cadena = cadena + palabra[pos + n];
-	if (cadena == "") { cadena = "cero "; }
+	if (cadena == "") { cadena = "cero"; }
 	return cadena;
 }
 
