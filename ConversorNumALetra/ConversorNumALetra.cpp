@@ -53,7 +53,7 @@ int main(int argc, const char* argv[]) {
 		if (copia == "un" && i == 2) copia = ""; // para que sea mil y no un mil
 		if (copia == "" && dg[2] != 1) 
 		{ 
-			num = copia + " " + num;
+			num = copia + num;
 		}
 		else
 		{ 
@@ -71,10 +71,9 @@ int main(int argc, const char* argv[]) {
 // Convierte a palabra el caso base de un numero de 3 digitos
 string Convierte(int n, int ciclo)
 {
-	string palabra[34] = { "","cien","doscientos ","trescientos ","cuatrocientos ","quinientos ","seiscientos","setecientos ","ochocientos ","novecientos","diez","veinte","treinta","cuarenta","cincuenta","sesenta","setenta","ochenta","noventa","once","doce","trece","catorce","quince","","uno","dos","tres","cuatro","cinco","seis","siete","ocho","nueve"};
+	string palabra[34] = { "","cien","doscientos ","trescientos ","cuatrocientos ","quinientos ","seiscientos","setecientos ","ochocientos ","novecientos","diez","veinte","treinta","cuarenta","cincuenta","sesenta","setenta","ochenta","noventa","once","doce","trece","catorce","quince","","un","dos","tres","cuatro","cinco","seis","siete","ocho","nueve"};
 	string cadena = "";
 	int c, r, d = 100, pos = 0;
-	if (ciclo > 1) palabra[25] = "un";
 	c = n / d; // cociente entero para tomar el primer digito (centena)
 	r = n % d; // residuo de la division para tomar los digitos que restan
 	cadena = cadena + palabra[pos + c]; //se toma la palabra correspondiente a las centenas
