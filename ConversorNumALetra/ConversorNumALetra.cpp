@@ -49,9 +49,16 @@ int main(int argc, const char* argv[]) {
 
 	while (dg[i] != -1) {
 		copia = Convierte(dg[i], i); // retorna un numero de 3 digitos en palabras
-		if (copia == "uno" && i >= 1) copia = "un";
+		if (copia == "uno" && i >= 1) copia = "un";  
 		if (copia == "un" && i == 2) copia = "";
-		(copia == "" && dg[2] != 1) ? num = copia + " " + num : num = copia + " " + deno[i - 1] + " " + num;
+		if (copia == "" && dg[2] != 1) 
+		{ 
+			num = "cero ";
+		}
+		else
+		{ 
+			num = copia + " " + deno[i - 1] + " " + num;
+		}
 		i++;
 	}
 
@@ -96,6 +103,7 @@ string ConvierteCent(int n)
 	else if (c > 1) cadena = cadena + " " + palabra[pos + c]; // agregar palabra de la decena
 	n = r; pos = 24; // agregan las unidades
 	(c > 1 && r > 0) ? cadena = cadena + " y " + palabra[pos + n] : cadena = cadena + palabra[pos + n];
+	if (cadena == "") { cadena = "cero "; }
 	return cadena;
 }
 
@@ -144,7 +152,7 @@ bool Validar(string c) // Devuelve true si se ingresa un dígito o false si se in
 
 	for (int i = 0; i < c.length(); i++)
 	{
-		if (isdigit(c[i]) == false)  // isdigit comprueba si el valor dentro de la cadena es un dígito
+		if (isdigit(c[i]) == false && c[i] != '.')  // isdigit comprueba si el valor dentro de la cadena es un dígito
 		{
 			q = false;
 		}
