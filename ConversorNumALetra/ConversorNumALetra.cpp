@@ -22,19 +22,19 @@
 #include <string>
 using namespace std;
 
-string TransformarDigito(int n, int i);
+string TransformarDigito(int n);
 string TransformarCent(int n);
 void AgruparDigitos(string d, int gd[]);
 bool Validar(string c);
 
 // Programa que conviente un numero de n digitos a palabras
 int main(int argc, const char* argv[]) {
-	int i = 1, j = 0, c;
+	int i = 1;
 	int dg[8] = { 0,-1,-1,-1,-1,-1,-1,-1 };
 	bool validar = true;
 	string dig = "";
 	string num = "", k = "", copia, centavos;
-	string deno[8] = { "","mil","millones","mil millones","billones","mil billones","trillones","mil trillones" };
+	string deno[6] = { "","mil","millones","mil millones","billones","mil billones"};
 
 	do
 	{
@@ -48,8 +48,7 @@ int main(int argc, const char* argv[]) {
 	AgruparDigitos(k, dg);
 
 	while (dg[i] != -1) {
-		copia = TransformarDigito(dg[i], i); // retorna un numero de 3 digitos en palabras
-		if (copia == "uno" && i >= 1) copia = "un";  // en caso de que sea un millon, un billon,...
+		copia = TransformarDigito(dg[i]); // retorna un numero de 3 digitos en palabras
 		if (copia == "un" && i == 2) copia = ""; // para que sea mil y no un mil
 		if (copia == "" && dg[2] != 1) 
 		{ 
@@ -69,7 +68,7 @@ int main(int argc, const char* argv[]) {
 }
 
 // Convierte a palabra el caso base de un numero de 3 digitos
-string TransformarDigito(int n, int ciclo)
+string TransformarDigito(int n)
 {
 	string palabra[34] = { "","cien","doscientos ","trescientos ","cuatrocientos ","quinientos ","seiscientos","setecientos ","ochocientos ","novecientos","diez","veinte","treinta","cuarenta","cincuenta","sesenta","setenta","ochenta","noventa","once","doce","trece","catorce","quince","","un","dos","tres","cuatro","cinco","seis","siete","ocho","nueve"};
 	string cadena = "";
@@ -77,7 +76,7 @@ string TransformarDigito(int n, int ciclo)
 	c = n / d; // Para tomar el digito de la centena
 	r = n % d; // residuo de la division para tomar los digitos que restan
 	cadena = cadena + palabra[pos + c]; //se toma la palabra correspondiente a las centenas
-	if (c == 1 && r > 0) cadena = cadena + "to"; // ciento en el caso de que sea > 100
+	if (c == 1 && r > 0) cadena = cadena + "to"; // Para los casos entre 100 < x < 200
 	d = d / 10; n = r; pos = 9; // posicion de las decenas
 	c = n / d; r = n % d; // digitos de las decenas y unidad
 	if (c == 1 && (r >= 1 && r <= 5)) { cadena = cadena + " " + palabra[pos * (c + 1) + r]; c = 0; r = 0; } // casi de los numerales especiales once al quince
