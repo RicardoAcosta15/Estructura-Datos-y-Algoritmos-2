@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CadenaMasLarga.cpp">
+    <ClCompile Include="Floreros.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

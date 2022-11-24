@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{3c4b6012-349f-49f8-9be6-b767d7842bd6}</ProjectGuid>
-    <RootNamespace>CadenaMasLarga</RootNamespace>
+    <ProjectGuid>{863c0301-eda1-4d15-9ac4-0fb6eddead6b}</ProjectGuid>
+    <RootNamespace>Floreros</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,7 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CadenaMasLarga.cpp" />
+    <ClCompile Include="Floreros.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
