@@ -9,7 +9,7 @@
  - Ricardo Acosta 1104082
  - Wilbert León 1105634
  - Sebastian Peralta 1105487
- - Jesus Bido 1105909
+ - Jorge Cruz 1105612
 
  Evidencia: Los floreros de Salvador
 
