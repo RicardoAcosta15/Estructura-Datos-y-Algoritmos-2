@@ -15,20 +15,23 @@
 
  Fecha: 24/11/2022
 */
-
 #include <iostream>
 #include <locale.h>
 
 using namespace std;
 
-//Prototipo de funciones
 void CreacionCadenas(int i);
-void CadenaMasLarga(int a);
+void CadenaMasLarga(int i);
+void TodasLasCadenas(int i);
 
 int Cont[98], Max, Pos = 0;
 
 int main()
 {
+	setlocale(LC_ALL, "");
+	cout << "La cadena más larga\n" << endl;
+	cout << "En una fiesta hay 99 invitados, a cada una de ellos se le ha dado un número entero comprendido entre 1 y 99, acompañados a unos instrucciones. Si su número es Par divide por 2, si es impar se multiplica por 3 y al resultado se suma 1. Repitiendo hasta que llega a 4.\n" << endl;
+
 	for (int i = 1; i < 100; i++) // Se evalúan los num del 1 al 99
 	{
 		CreacionCadenas(i);
@@ -37,58 +40,62 @@ int main()
 
 	Max = Cont[0];  // Max toma la primera pos del array
 
-	for (int a = 0; a < 99; a++)  // Compara cada contador dentro del array para encontrar el de mayor valor.
+	for (int a = 0; a < 99; a++)  // Busca el contador más grande
 	{
-		if (Cont[a] > Max) { Max = Cont[a]; Pos = a; }
+		if (Cont[a] > Max) { Max = Cont[a];Pos = a; }  //Si el contador es mayor que Max, Max toma la siguiente pos del array
 	}
 
-	cout << "La cadena mas larga es la del " << (Pos + 1) << ".\n" << endl;
-
-	CadenaMasLarga(Pos + 1);
+	CadenaMasLarga(Pos + 1);  //Toma el num con más repeticiones
 	cout << "Contador de Cadena: " << Max << endl;
 
 	return 0;
 }
 
-void CreacionCadenas(int i) // Creamos las cadenas
+void CreacionCadenas(int i) // Obtenemos el numero de repeticiones de cada numero del rango
 {
-	int num = 0, cont = 0, mod;
-	bool confirmar = false;
+	int num = i, cont = 0, mod;
+	bool Conf = true;
 
-	num = i;
-
-	while (confirmar != true)
+	while (Conf != false)
 	{
 		mod = num % 2; // Usamos el módulo para saber si es par
-
-		(mod == 0) ? num /= 2 : num = (num * 3) + 1;  // Si el mod es 0 significa que el num es par
-
-		if (num == 4) { confirmar = true; }  // Si num llega a 4 paramos la cadena
-
-		cont++;  // Cuenta las repeticiones
+		(mod == 0) ? num = (num / 2) : num = (num * 3) + 1;  // Si el mod es 0 significa que el num es par
+		if (num == 4) { Conf = false; }  // Si num llega a 4 paramos el bucle
+		cont++; // Cuenta las repeticiones
 	}
 	Cont[i - 1] = cont;  //Guarda el total de repeticiones del num en un array
 }
 
-void CadenaMasLarga(int a)  // Determina la cadena más larga
+void CadenaMasLarga(int a)  // Imprime la cadena del num con más repeticiones
 {
-	int num = 0, C = 0, mod;
-	bool confirmar = false;
-	num = a;
+	int num = a, mod;
+	bool Conf = true;
 	cout << num << " = ";
 
-	while (confirmar != true)
+	while (Conf != false)
 	{
 		mod = num % 2;
-
-		(mod == 0) ? num /= 2 : num = (num * 3) + 1;
-
+		(mod == 0) ? num = (num / 2) : num = (num * 3) + 1;
 		(num != 4) ? cout << num << " - " : cout << num << "\n" << endl; //Mientras num no sea 4, imprime un guión
-
-		C++;
-
-		if (num == 4) { confirmar = true; }
+		if (num == 4) { Conf = false; }
 	}
-	cout << "Contador de Cadena: " << C << endl;
+}
+
+void TodasLasCadenas(int i)  //Imprime las cadenas de todos los numeros
+{
+	int num = i, cont = 0, mod;
+	bool Conf = true;
+
+	cout << num << " = ";
+
+	while (Conf != false)
+	{
+		mod = num % 2;
+		(mod == 0) ? num = (num / 2) : num = (num * 3) + 1;
+		(num != 4) ? cout << num << " - " : cout << num << "\n" << endl;
+		if (num == 4) { Conf = false; }
+		cont++;
+	}
+	cout << "Contador de Cadena: " << cont << endl;
 	cout << "-----------------------------------------------------------------------------------" << endl;
 }
