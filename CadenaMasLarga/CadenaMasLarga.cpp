@@ -1,5 +1,5 @@
 /*
- Asignatura: IDS344-01 - ESTRUCTURAS DE DATOS Y ALGORITMOS II
+ Asignatura: IDS344-01 - LABORATORIO ESTRUCTURAS DE DATOS Y ALGORITMOS II
 
  Docente: CASIMIRO GILBERTO CORDERO RAMIREZ
 
@@ -9,7 +9,7 @@
  - Ricardo Acosta 1104082
  - Wilbert León 1105634
  - Sebastian Peralta 1105487
- - Jesus Bido 1105909
+ - Jorge Cruz 1105612
 
  Evidencia: Cadena Más Larga
 
