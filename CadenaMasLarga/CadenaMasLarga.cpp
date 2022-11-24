@@ -17,6 +17,7 @@
 */
 
 #include <iostream>
+#include <locale.h>
 
 using namespace std;
 
@@ -31,21 +32,20 @@ int main()
 	for (int i = 1; i < 100; i++) // Se evalúan los num del 1 al 99
 	{
 		CreacionCadenas(i);
+		//TodasLasCadenas(i);
 	}
 
 	Max = Cont[0];  // Max toma la primera pos del array
 
 	for (int a = 0; a < 99; a++)  //Explícame ahí w pls
 	{
-		if (Cont[a] > Max)
-		{
-			Max = Cont[a];
-			Pos = a;
-		}
+		if (Cont[a] > Max) { Max = Cont[a]; Pos = a; }
 	}
 
+	cout << "La cadena mas larga es la del " << (Pos + 1) << ".\n" << endl;
+
 	CadenaMasLarga(Pos + 1);
-	cout << "Contador de Cadena: " << Cont[Pos] << endl;
+	cout << "Contador de Cadena: " << Max << endl;
 
 	return 0;
 }
@@ -87,4 +87,6 @@ void CadenaMasLarga(int a)  // Determina la cadena más larga
 
 		if (num == 4) { confirmar = true; }
 	}
+	cout << "Contador de Cadena: " << C << endl;
+	cout << "-----------------------------------------------------------------------------------" << endl;
 }
