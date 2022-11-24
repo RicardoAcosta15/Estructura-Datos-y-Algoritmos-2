@@ -37,7 +37,7 @@ int main()
 
 	Max = Cont[0];  // Max toma la primera pos del array
 
-	for (int a = 0; a < 99; a++)  //Explícame ahí w pls
+	for (int a = 0; a < 99; a++)  // Compara cada contador dentro del array para encontrar el de mayor valor.
 	{
 		if (Cont[a] > Max) { Max = Cont[a]; Pos = a; }
 	}
@@ -72,7 +72,7 @@ void CreacionCadenas(int i) // Creamos las cadenas
 
 void CadenaMasLarga(int a)  // Determina la cadena más larga
 {
-	int num = 0, mod;
+	int num = 0, C = 0, mod;
 	bool confirmar = false;
 	num = a;
 	cout << num << " = ";
@@ -84,6 +84,8 @@ void CadenaMasLarga(int a)  // Determina la cadena más larga
 		(mod == 0) ? num /= 2 : num = (num * 3) + 1;
 
 		(num != 4) ? cout << num << " - " : cout << num << "\n" << endl; //Mientras num no sea 4, imprime un guión
+
+		C++;
 
 		if (num == 4) { confirmar = true; }
 	}
