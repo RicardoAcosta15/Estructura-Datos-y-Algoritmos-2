@@ -33,7 +33,7 @@ int main()
 	int paquetes = 5;
 
 	cout << "El beneficio maximo sin sobrepasar el umbral es: " << mochila(umbral, pesoPaquetes, beneficio, paquetes) << endl;
-
+	  
 	return 0;
 }
 
