@@ -20,41 +20,66 @@
 
 using namespace std;
 
-int max(int a, int b);
-int mochila(int umbral, int pesoPaquetes[], int beneficio[], int paquetes);
+struct objeto
+{
+	float beneficio;
+	float peso;
+	float indice;
+};
+
+float mochila(int k, float umbral, objeto elemento[], float sol);
 
 int main()
 {
-	int pesoPaquetes[] = { 10, 20, 30, 40, 50 };
-	int beneficio[] = { 20, 30, 65, 40, 60 };
 
-	int umbral = 100;
+	int n = 5, k = 0, max;
+	float umbral = 100, sol = 0;
+	objeto elemento[5], aux;
+	float peso[5] = { 10, 20, 30, 40, 50 };
+	float beneficio[5] = { 20, 30, 65, 40, 60 };
 
-	int paquetes = 5;
+	for (int i = 0; i < n; i++)
+	{
+		elemento[i].peso = peso[i];
+		elemento[i].beneficio = beneficio[i];
+		elemento[i].indice = elemento[i].beneficio / elemento[i].peso;
+	}
 
-	cout << "El beneficio maximo sin sobrepasar el umbral es: " << mochila(umbral, pesoPaquetes, beneficio, paquetes) << endl;
-	  
+	for (int i = 0; i < n; i++)
+	{
+		max = i;
+		for (int j = i + 1; j < n; j++)
+		{
+			if (elemento[j].indice > elemento[max].indice)
+			{
+				max = j;
+			}
+		}
+		aux = elemento[i];
+		elemento[i] = elemento[max];
+		elemento[max] = aux;
+	}
+
+	cout << "El beneficio maximo sin sobrepasar el umbral es: " << mochila(k, umbral, elemento, sol) << endl;
+
 	return 0;
 }
 
-
-int max(int a, int b) {
-	return (a > b) ? a : b;
-}  //devuelve el beneficio maximo
-
-int mochila(int umbral, int pesoPaquetes[], int beneficio[], int paquetes)
+float mochila(int k, float umbral, objeto elemento[], float sol)
 {
-	// Si el umbral es 0 o la cantidad de paquetes es 0, devolvera un 0
-	if (paquetes == 0 || umbral == 0)
-		return 0;
-
-	// Si el peso de uno de los paquetes es superior a al umbral de la mochila
-	// Entonces este paquete no puede ser incluido en la solucion del beneficio maximo
-	if (pesoPaquetes[paquetes - 1] > umbral) {
-		return mochila(umbral, pesoPaquetes, beneficio, paquetes - 1);
+	while (umbral > 0)
+	{
+		if (umbral > elemento[k].peso)
+		{
+			umbral -= elemento[k].peso;
+			sol += elemento[k].beneficio;
+		}
+		else
+		{
+			sol += elemento[k].beneficio * (umbral / elemento[k].peso);
+			umbral = 0;
+		}
+		k++;
 	}
-	// Retorna el mayor beneficio de la combinacion de valores
-	else {
-		return max(beneficio[paquetes - 1] + mochila(umbral - pesoPaquetes[paquetes - 1], pesoPaquetes, beneficio, paquetes - 1), mochila(umbral, pesoPaquetes, beneficio, paquetes - 1));
-	}
+	return sol;
 }
