@@ -15,6 +15,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Triangulo Sierpinski", "Tri
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Circulo", "Circulo\Circulo.vcxproj", "{4AB4A6D6-1623-4688-8462-D05C7BF6D5DC}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "N reinas", "N reinas\N reinas.vcxproj", "{6FD75EF5-9793-4547-ABF9-385209BFC3C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -71,6 +73,14 @@ Global
 		{4AB4A6D6-1623-4688-8462-D05C7BF6D5DC}.Release|x64.Build.0 = Release|x64
 		{4AB4A6D6-1623-4688-8462-D05C7BF6D5DC}.Release|x86.ActiveCfg = Release|Win32
 		{4AB4A6D6-1623-4688-8462-D05C7BF6D5DC}.Release|x86.Build.0 = Release|Win32
+		{6FD75EF5-9793-4547-ABF9-385209BFC3C8}.Debug|x64.ActiveCfg = Debug|x64
+		{6FD75EF5-9793-4547-ABF9-385209BFC3C8}.Debug|x64.Build.0 = Debug|x64
+		{6FD75EF5-9793-4547-ABF9-385209BFC3C8}.Debug|x86.ActiveCfg = Debug|Win32
+		{6FD75EF5-9793-4547-ABF9-385209BFC3C8}.Debug|x86.Build.0 = Debug|Win32
+		{6FD75EF5-9793-4547-ABF9-385209BFC3C8}.Release|x64.ActiveCfg = Release|x64
+		{6FD75EF5-9793-4547-ABF9-385209BFC3C8}.Release|x64.Build.0 = Release|x64
+		{6FD75EF5-9793-4547-ABF9-385209BFC3C8}.Release|x86.ActiveCfg = Release|Win32
+		{6FD75EF5-9793-4547-ABF9-385209BFC3C8}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
