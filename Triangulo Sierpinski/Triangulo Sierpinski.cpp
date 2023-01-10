@@ -28,7 +28,7 @@ int main()
 	const int tam = 37; //Tamaño de la matriz
 	char triangulo[tam][tam];  //Matriz cuadrada
 	
-	int num, x = tam, y = tam, rep = 0;
+	int num, x = 15, y = 15, rep = 0;
 
 	for (int i = 0; i < tam; i++)
 	{

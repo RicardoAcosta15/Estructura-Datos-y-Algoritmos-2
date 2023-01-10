@@ -20,11 +20,11 @@
 
 using namespace std;
 
-struct objeto
+struct objeto  //estrutura con los atributos de cada elemento
 {
 	float beneficio;
 	float peso;
-	float indice;
+	float indice;  //valor del beneficio por unidad de peso
 };
 
 float mochila(int k, float umbral, objeto elemento[], float sol);
@@ -38,14 +38,14 @@ int main()
 	float peso[5] = { 10, 20, 30, 40, 50 };
 	float beneficio[5] = { 20, 30, 65, 40, 60 };
 
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i < n; i++)  //Asignamos los valores establecidos a la estructura
 	{
 		elemento[i].peso = peso[i];
 		elemento[i].beneficio = beneficio[i];
 		elemento[i].indice = elemento[i].beneficio / elemento[i].peso;
 	}
 
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i < n; i++) //Ordenamos por indice de mayor a menor con selection sort
 	{
 		max = i;
 		for (int j = i + 1; j < n; j++)
@@ -67,19 +67,19 @@ int main()
 
 float mochila(int k, float umbral, objeto elemento[], float sol)
 {
-	while (umbral > 0)
+	while (umbral > 0)  //Mientras la mochila tenga espacio
 	{
-		if (umbral > elemento[k].peso)
+		if (umbral > elemento[k].peso) //Si el peso completo del elemento cabe
 		{
-			umbral -= elemento[k].peso;
-			sol += elemento[k].beneficio;
+			umbral -= elemento[k].peso; //Resta al peso disponible
+			sol += elemento[k].beneficio;  //Suma el beneficio de dicho peso a la solucion
 		}
-		else
+		else  //Si el peso completo del elemento no cabe
 		{
-			sol += elemento[k].beneficio * (umbral / elemento[k].peso);
-			umbral = 0;
+			sol += elemento[k].beneficio * (umbral / elemento[k].peso);  //Suma la fraccion de beneficio correspondiente
+			umbral = 0; // La mochila ya no tiene espacio disponible
 		}
-		k++;
+		k++; //Suma k para recorrer el array
 	}
-	return sol;
+	return sol;  // retorna la sumatoria de los beneficios
 }

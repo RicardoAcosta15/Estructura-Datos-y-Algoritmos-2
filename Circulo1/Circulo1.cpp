@@ -17,8 +17,9 @@
 */
 #include <iostream>
 #include <math.h>
-#include<stdio.h>
+#include <stdio.h>
 #include <string>
+
 using namespace std;
 
 bool Validacion(string c);
@@ -60,6 +61,7 @@ int main()
     }
 
     return 0;
+
 }
 
 bool Validacion(string c)
